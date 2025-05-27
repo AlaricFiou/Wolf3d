@@ -2,24 +2,23 @@
 ** EPITECH PROJECT, 2025
 ** animate_enemy
 ** File description:
-** animate the anemy given
+** animate the enemy given
 */
 
 #include <math.h>
+#include "init_enemies.h"
 #include "handle_enemies.h"
 
 void handle_status(enemy_t *enemy, float delta_time)
 {
-    if (enemy->state == ENEMY_PAIN) {
-        enemy->rect.left = GHOUL_HURTING;
-        enemy->timer += delta_time;
-        if (enemy->timer > 0.2) {
-            enemy->state = ENEMY_IDLE;
-            enemy->timer = 0.0;
-        }
-        sfSprite_setTextureRect(enemy->sprite, enemy->rect);
+    static pain_handler_t pain_handlers[MAX_ENEMY_TYPES] = {
+        [GHOUL_ID] = handle_ghoul_pain
+    };
+
+    if (enemy->state != ENEMY_PAIN)
         return;
-    }
+    if (enemy->id < MAX_ENEMY_TYPES && pain_handlers[enemy->id])
+        pain_handlers[enemy->id](enemy, delta_time);
 }
 
 void animate_enemy(enemy_t *enemy, float delta_time)
