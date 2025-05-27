@@ -45,6 +45,7 @@ SRC = 	src/main.c										\
 		src/display/animation/animate_weapon.c			\
 		src/display/animation/animate_explosion.c		\
 		src/display/animation/weapons/init_shootgun.c	\
+		src/display/animation/types/ghoul.c				\
 		src/events/handle_events.c						\
 		src/events/shoot.c								\
 		src/save/open_save.c							\

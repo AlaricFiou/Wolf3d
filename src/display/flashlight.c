@@ -9,8 +9,8 @@
 
 static void update_intensity(int *intensity)
 {
-    if (intensity > MAX_LIGHT)
-        intensity = MAX_LIGHT;
+    if ((*intensity) > MAX_LIGHT)
+        (*intensity) = MAX_LIGHT;
 }
 
 void handle_flashlight(int count_rays,
