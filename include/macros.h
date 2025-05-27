@@ -86,8 +86,8 @@
     //PLAYER
 
     #define PITCH_SPEED 5
-    #define MAX_ANGLE_UP 0
-    #define MAX_ANGLE_DOWN 350
+    #define MIN_PITCH -350
+    #define MAX_PITCH 0
     #define PLAYER_HP 3
     #define PLAYER_DEAD -1
     #define PLAYER_INVINCIBILITY 2

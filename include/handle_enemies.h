@@ -50,6 +50,9 @@ enemy_manager_t *init_enemy_manager(map_info_t *map_info);
 
 //ANIMATE
 
+//GHOUL
+void handle_ghoul_pain(enemy_t *enemy, float delta_time);
+
 void animate_enemy(enemy_t *enemy, float delta_time);
 void move_enemy_towards_player(enemy_t *enemy, player_t *player,
     float dt, map_info_t *map);
