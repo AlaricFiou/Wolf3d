@@ -20,10 +20,13 @@ static void project_enemy(player_t *player, enemy_t *enemy,
     *sx = (angle + (FOV / 2)) * SIZE_X / FOV;
 }
 
-static void set_enemy_sprite(enemy_t *enemy, int x, int h)
+static void set_enemy_sprite(enemy_t *enemy, int x, int h, player_t *player)
 {
     float scale = (float)h / enemy->rect.height;
-    sfVector2f pos = {x - (enemy->rect.width * scale) / 2, (SIZE_Y - h) / 2};
+    sfVector2f pos = {
+        x - (enemy->rect.width * scale) / 2,
+        (SIZE_Y - h) / 2 + player->pitch
+    };
     sfVector2f sc = {scale, scale};
 
     sfSprite_setScale(enemy->sprite, sc);
@@ -43,6 +46,6 @@ void draw_enemy_3d(sfRenderWindow *window, player_t *player,
         return;
     height = (int)(TILE_SIZE / dist * (SIZE_X / 2));
     col = (int)sx;
-    set_enemy_sprite(enemy, col, height);
+    set_enemy_sprite(enemy, col, height, player);
     sfRenderWindow_drawSprite(window, enemy->sprite, NULL);
 }

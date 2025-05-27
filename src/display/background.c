@@ -7,7 +7,7 @@
 
 #include "wolf.h"
 
-static void display_sky(window_t *game,
+static void update_sky(window_t *game,
     float pitch, sfIntRect rect1, sfIntRect rect2)
 {
     if (rect1.width < SIZE_X) {
@@ -35,7 +35,7 @@ void draw_sky(window_t *game, player_t *player)
     sfSprite_setScale(game->sprite,
         (sfVector2f){1.0, (SIZE_Y / 2.0) / height});
     sfRenderWindow_drawSprite(game->window, game->sprite, NULL);
-    update_sky(game, rect1, rect2);
+    update_sky(game, pitch, rect1, rect2);
 }
 
 void draw_floor(sfRenderWindow *window, float pitch)
