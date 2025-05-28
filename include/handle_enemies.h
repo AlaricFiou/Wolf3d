@@ -25,6 +25,7 @@ typedef enum {
 typedef struct enemy_s {
     int hp;
     int id;
+    float z;
     int frames;
     float timer;
     float angle;

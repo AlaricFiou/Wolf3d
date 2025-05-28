@@ -66,7 +66,7 @@
     #define SHOOTGUN_TOP 162
     #define SHOOTGUN_SIZE 4.1
     #define NB_FRAMES_SHOOT 8
-    #define BULLET_RADIUS 20.0
+    #define BULLET_RADIUS 10.0
     #define SHOOTGUN_WIDTH 232
     #define SHOOTGUN_HEIGHT 161
     #define BULLET_RANGE 1000.0
@@ -85,6 +85,7 @@
 
     //PLAYER
 
+    #define PLAYER_EYE_HEIGHT 0.5
     #define PITCH_SPEED 5
     #define MIN_PITCH -350
     #define MAX_PITCH 0
