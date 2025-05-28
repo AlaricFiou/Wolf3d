@@ -8,6 +8,7 @@
 #include "wolf.h"
 #include <string.h>
 #include "weapons.h"
+#include "macros.h"
 #include "weapon_features.h"
 
 anim_t *init_explosion(void)
@@ -32,25 +33,6 @@ anim_t *init_explosion(void)
     anim->playing = false;
     anim->playing_ex = false;
     return anim;
-}
-
-weapon_t *init_shootgun(void)
-{
-    weapon_t *weapon = malloc(sizeof(weapon_t));
-
-    if (weapon == NULL)
-        return NULL;
-    weapon->texture = init_texture(PATH_SHOOTGUN, NULL);
-    weapon->sprite = init_sprite(weapon->texture);
-    weapon->ex_texture = init_texture(PATH_EX, NULL);
-    weapon->ex_sprite = init_sprite(weapon->ex_texture);
-    weapon->shoot_anim = init_shootgun_anim();
-    weapon->explosion_anim = init_explosion();
-    weapon->next = NULL;
-    weapon->state = WEAPON_IDLE;
-    if (weapon->shoot_anim)
-        sfSprite_setTextureRect(weapon->sprite, weapon->shoot_anim->frames[0]);
-    return weapon;
 }
 
 static weapon_t *init_weapon_by_name(const char *name)

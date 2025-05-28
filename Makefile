@@ -25,6 +25,7 @@ SRC = 	src/main.c										\
 		src/init/init_weapon.c							\
 		src/init/init_player.c							\
 		src/init/init_textures.c						\
+		src/init/types_weapons/shotgun.c				\
 		src/algorithm/map.c								\
 		src/algorithm/calculs.c							\
 		src/algorithm/raycasting.c						\
@@ -44,11 +45,11 @@ SRC = 	src/main.c										\
 		src/display/animation/animate_ghoul.c			\
 		src/display/animation/animate_weapon.c			\
 		src/display/animation/animate_explosion.c		\
-		src/display/animation/weapons/init_shootgun.c	\
 		src/display/animation/types/ghoul.c				\
 		src/events/handle_events.c						\
 		src/events/shoot.c								\
 		src/save/open_save.c							\
+		src/features/weapons.c							\
 
 CPPFLAGS = -I./include/
 

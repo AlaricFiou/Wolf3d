@@ -27,6 +27,7 @@ typedef struct anim_s {
 } anim_t;
 
 typedef struct weapon_s {
+    int munitions;
     sfSprite *sprite;
     sfTexture *texture;
     sfSprite *ex_sprite;
@@ -37,7 +38,11 @@ typedef struct weapon_s {
     weapon_state_t state;
 } weapon_t;
 
-weapon_t *init_shootgun(void);
+//INIT WEAPONS
+
+weapon_t *init_shotgun(void);
+
+//HANDLE MULTIPLES WEAPONS
 
 typedef struct weapon_factory_s {
     const char *name;
@@ -45,7 +50,7 @@ typedef struct weapon_factory_s {
 } weapon_factory_t;
 
 static const weapon_factory_t weapon_factory[] = {
-    {"shootgun", &init_shootgun},
+    {"shootgun", &init_shotgun},
     {NULL, NULL}
 };
 
