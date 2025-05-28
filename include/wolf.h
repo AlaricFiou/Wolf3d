@@ -59,7 +59,7 @@ void handle_flashlight(int count_rays,
 
 //ANIMATE
 
-anim_t *init_shootgun_anim(void);
+anim_t *init_explosion(void);
 void animate_ghoul_death(enemy_t *enemy, float delta_time);
 void start_animation(anim_t *anim, sfSprite *sprite);
 void update_weapon_anim(anim_t *anim, sfSprite *sprite, float delta_time);

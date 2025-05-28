@@ -24,7 +24,7 @@
     #define MAX_ENEMIES 10
     #define GHOUL_SCORE 10
     #define GHOUL_SPEED 20.0
-    #define GHOUL_HURT_TIME 0.2
+    #define GHOUL_HURT_TIME 0.4
     #define GHOUL_PATH "assets/enemies/Ghoul.png"
 
     #define GHOUL_DEATH 0
@@ -39,6 +39,6 @@
     #define GHOUL_DEATH_TOP 236
     #define GHOUL_DEATH_FRAMES 8
     #define GHOUL_DEATH_HEIGHT 63
-    #define GHOUL_DEATH_SPEED 0.02
+    #define GHOUL_DEATH_SPEED 0.1
 
 #endif /* !ENEMIES_STATUS_H_ */
