@@ -8,33 +8,33 @@
 #include "wolf.h"
 #include <math.h>
 
-static bool is_enemy_hit(sfVector2f bullet_start,
-    sfVector2f bullet_end, enemy_t *enemy)
+static bool is_enemy_hit_3d(sfVector3f bull_start,
+    sfVector3f bull_end, enemy_t *enemy)
 {
-    sfVector2f closest_point;
-    float distance_squared = 0.0;
-    sfVector2f e_pos = enemy->position;
-    sfVector2f shot_direction = {bullet_end.x - bullet_start.x,
-        bullet_end.y - bullet_start.y};
-    sfVector2f e_vector = {e_pos.x - bullet_start.x, e_pos.y - bullet_start.y};
-    float get_position = e_vector.x * shot_direction.x +
-        e_vector.y * shot_direction.y;
-    float direction_lenght =
-        shot_direction.x * shot_direction.x +
-        shot_direction.y * shot_direction.y;
-    float hit_e = get_position / direction_lenght;
+    float dist_sq = 0.0;
+    sfVector3f closest = {0, 0, 0};
+    sfVector3f e_pos = {enemy->position.x, enemy->position.y,
+        enemy->z + ENEMY_CENTER_Z};
+    sfVector3f dir = {bull_end.x - bull_start.x, bull_end.y - bull_start.y,
+        bull_end.z - bull_start.z};
+    sfVector3f to_enemy = {e_pos.x - bull_start.x, e_pos.y - bull_start.y,
+        e_pos.z - bull_start.z};
+    float shoot =
+        (to_enemy.x * dir.x + to_enemy.y * dir.y + to_enemy.z * dir.z) /
+        (dir.x * dir.x + dir.y * dir.y + dir.z * dir.z);
 
-    hit_e = fmaxf(0.0, fminf(1.0, hit_e));
-    closest_point.x = bullet_start.x + hit_e * shot_direction.x;
-    closest_point.y = bullet_start.y + hit_e * shot_direction.y;
-    distance_squared = powf(closest_point.x - e_pos.x, 2) +
-        powf(closest_point.y - e_pos.y, 2);
-    return distance_squared < BULLET_RADIUS * BULLET_RADIUS;
+    shoot = fmaxf(0.0, fminf(1.0, shoot));
+    closest.x = bull_start.x + dir.x * shoot;
+    closest.y = bull_start.y + dir.y * shoot;
+    closest.z = bull_start.z + dir.z * shoot;
+    dist_sq = powf(closest.x - e_pos.x, 2) + powf(closest.y - e_pos.y, 2) +
+        powf(closest.z - e_pos.z, 2);
+    return dist_sq < BULLET_RADIUS * BULLET_RADIUS;
 }
 
-static void handle_state(sfVector2f start, sfVector2f end, enemy_t *enemy)
+static void handle_state(sfVector3f start, sfVector3f end, enemy_t *enemy)
 {
-    if (is_enemy_hit(start, end, enemy)) {
+    if (is_enemy_hit_3d(start, end, enemy)) {
         enemy->hp -= BULLET_DAMAGE;
         if (enemy->hp <= 0) {
             enemy->state = ENEMY_DEAD;
@@ -48,22 +48,17 @@ static void handle_state(sfVector2f start, sfVector2f end, enemy_t *enemy)
 void shoot_bullet(player_t *player, enemy_manager_t *manager)
 {
     enemy_t *enemy = NULL;
-    float angle = player->angle;
-    sfVector2f start = {player->x, player->y};
-    sfVector2f dir = {
-        cosf(angle) * BULLET_RANGE,
-        sinf(angle) * BULLET_RANGE
-    };
-    sfVector2f end = {
-        start.x + dir.x,
-        start.y + dir.y
-    };
+    float vertical_angle = MAX_PITCH * (MY_PI / 180.0f);
+    float horizontal_angle = player->angle;
+    sfVector3f dir3d = {cosf(horizontal_angle) * cosf(vertical_angle),
+        sinf(horizontal_angle) * cosf(vertical_angle), sinf(vertical_angle)};
+    sfVector3f start = {player->x, player->y, PLAYER_EYE_HEIGHT};
+    sfVector3f end = {start.x + dir3d.x * BULLET_RANGE,
+        start.y + dir3d.y * BULLET_RANGE, start.z + dir3d.z * BULLET_RANGE};
 
     for (size_t i = 0; i < manager->count; i++) {
         enemy = manager->enemies[i];
-        if (enemy == NULL)
-            continue;
-        if (enemy->state == ENEMY_DEAD_ANIM_FINISHED)
+        if (!enemy || enemy->state == ENEMY_DEAD_ANIM_FINISHED)
             continue;
         handle_state(start, end, enemy);
     }

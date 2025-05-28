@@ -11,6 +11,7 @@
 
 static void set_values(sfVector2f pos, enemy_t *enemy)
 {
+    enemy->z = 0.0;
     enemy->timer = 0.0;
     enemy->angle = 0.0;
     enemy->death_frame = 0;

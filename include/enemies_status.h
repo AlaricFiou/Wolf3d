@@ -10,6 +10,8 @@
 
     //ENEMIES
 
+    #define ENEMY_HEIGHT 1.0
+    #define ENEMY_CENTER_Z (ENEMY_HEIGHT / 2.0)
     #define MAX_ENEMY_TYPES 4
     #define ENEMY_ATTACK_RADIUS 20.0
     #define ENEMY_DAMAGE 1
