@@ -21,7 +21,7 @@
     #define GHOUL_ID 3
     #define GHOUL_HP 10
     #define GHOUL_FRAMES 3
-    #define MAX_ENEMIES 10
+    #define MAX_ENEMIES 100000
     #define GHOUL_SCORE 10
     #define GHOUL_SPEED 20.0
     #define GHOUL_HURT_TIME 0.4

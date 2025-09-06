@@ -18,6 +18,8 @@
 
     #define IS_WALL 1
     #define IS_EMPTY 0
+    #define IS_PLAYER_START 2
+    #define IS_ENEMY 3
     #define SHORTER_PATH 1
     #define LONGER_PATH -1
     #define MY_PI 3.14159265
@@ -61,16 +63,18 @@
     #define WEAPON_EX_WIDTH 31
     #define WEAPON_EX_HEIGHT 21
 
+    //SHOTGUN
+    #define SHOTGUN_MUNITIONS 5
     #define BULLET_DAMAGE 5
-    #define SHOOTGUN_LEFT 72
-    #define SHOOTGUN_TOP 162
-    #define SHOOTGUN_SIZE 4.1
+    #define SHOTGUN_LEFT 72
+    #define SHOTGUN_TOP 162
+    #define SHOTGUN_SIZE 4.1
     #define NB_FRAMES_SHOOT 8
     #define BULLET_RADIUS 10.0
-    #define SHOOTGUN_WIDTH 232
-    #define SHOOTGUN_HEIGHT 161
+    #define SHOTGUN_WIDTH 232
+    #define SHOTGUN_HEIGHT 161
     #define BULLET_RANGE 1000.0
-    #define FRAME_SHOOTGUN_TIME 0.1
+    #define FRAME_SHOTGUN_TIME 0.1
 
     //WALL ASSETS
 
@@ -87,7 +91,7 @@
 
     #define PLAYER_EYE_HEIGHT 0.5
     #define PITCH_SPEED 5
-    #define MIN_PITCH -350
+    #define MIN_PITCH -330
     #define MAX_PITCH 0
     #define PLAYER_HP 3
     #define PLAYER_DEAD -1
