@@ -46,7 +46,7 @@ void draw_floor(sfRenderWindow *window, float pitch)
     sfRectangleShape_setSize(rect, size);
     sfRectangleShape_setPosition(rect,
         (sfVector2f){0, (SIZE_Y / 2.0) + pitch});
-    sfRectangleShape_setFillColor(rect, sfColor_fromRGB(0, 0, 0));
+    sfRectangleShape_setFillColor(rect, sfColor_fromRGB(0, 180, 0));
     sfRenderWindow_drawRectangleShape(window, rect, NULL);
     sfRectangleShape_destroy(rect);
 }
