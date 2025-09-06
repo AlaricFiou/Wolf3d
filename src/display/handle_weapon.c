@@ -16,7 +16,7 @@ void update_weapon_position(window_t *game, weapon_t *weapon)
 
     sfSprite_setPosition(weapon->sprite, (sfVector2f){pos_x, pos_y});
     sfSprite_setScale(weapon->sprite,
-        (sfVector2f){SHOOTGUN_SIZE, SHOOTGUN_SIZE});
+        (sfVector2f){SHOTGUN_SIZE, SHOTGUN_SIZE});
     sfSprite_setPosition(weapon->ex_sprite,
         (sfVector2f){win.x / 2 - 50, pos_y});
     sfSprite_setScale(weapon->ex_sprite, (sfVector2f){EX_SIZE, EX_SIZE});
