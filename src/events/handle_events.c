@@ -50,9 +50,12 @@ static void handle_input(sfEvent event, window_t *game,
         player->weapon->shoot_anim->playing == false) {
         shoot_bullet(player, enemy_manager);
         start_animation(player->weapon->shoot_anim, player->weapon->sprite);
-        start_animation(player->weapon->explosion_anim,
-            player->weapon->ex_sprite);
-        sfSound_play(game->effect.sound);
+        if (player->weapon->munitions > 0) {
+            start_animation(player->weapon->explosion_anim,
+                player->weapon->ex_sprite);
+            sfSound_play(game->effect.sound);
+        }
+        player->weapon->munitions -= 1;
     }
     if (event.type == sfEvtKeyPressed && sfKeyboard_isKeyPressed(sfKeyF))
         game->effect.flashlight = !game->effect.flashlight;

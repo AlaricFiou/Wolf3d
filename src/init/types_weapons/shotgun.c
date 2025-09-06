@@ -21,13 +21,13 @@ static anim_t *init_shotgun_anim(void)
     if (anim->frames == NULL)
         return NULL;
     for (int i = 0; i < NB_FRAMES_SHOOT; i++) {
-        anim->frames[i].left = SHOOTGUN_LEFT;
-        anim->frames[i].top = i * SHOOTGUN_TOP + i;
-        anim->frames[i].width = SHOOTGUN_WIDTH;
-        anim->frames[i].height = SHOOTGUN_HEIGHT;
+        anim->frames[i].left = SHOTGUN_LEFT;
+        anim->frames[i].top = i * SHOTGUN_TOP + i;
+        anim->frames[i].width = SHOTGUN_WIDTH;
+        anim->frames[i].height = SHOTGUN_HEIGHT;
     }
     anim->current_frame = 0;
-    anim->frame_duration = FRAME_SHOOTGUN_TIME;
+    anim->frame_duration = FRAME_SHOTGUN_TIME;
     anim->elapsed = 0.0;
     anim->playing = false;
     return anim;
@@ -49,5 +49,6 @@ weapon_t *init_shotgun(void)
     weapon->state = WEAPON_IDLE;
     if (weapon->shoot_anim)
         sfSprite_setTextureRect(weapon->sprite, weapon->shoot_anim->frames[0]);
+    weapon->munitions = SHOTGUN_MUNITIONS;
     return weapon;
 }
